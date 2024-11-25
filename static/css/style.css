@@ -1,0 +1,157 @@
+/* General Body Style */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #343a40;
+}
+.navbar-brand {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+.navbar-brand:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Carousel */
+.carousel-item img {
+    height: 450px;
+    object-fit: cover;
+}
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 20px;
+    color: #fff;
+}
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+.carousel-caption p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+.carousel-caption .btn {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.carousel-caption .btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* News Section */
+#news {
+    margin: 50px 0;
+}
+#news h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+}
+.card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #343a40;
+}
+.card-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card .btn {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 600;
+}
+.card .btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+/* Pagination */
+.pagination-container {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.pagination-container .btn {
+    font-size: 1rem;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    transition: all 0.3s ease;
+}
+.pagination-container .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+footer a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 300px;
+    }
+    .card img {
+        height: 150px;
+    }
+    .carousel-caption h5 {
+        font-size: 1.5rem;
+    }
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+}

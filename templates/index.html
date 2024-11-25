@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karanveer Mehra News</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand mx-auto" href="#">Karanveer Mehra News</a>
+    </nav>
+
+    <!-- Carousel Section -->
+    <div id="topNewsCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for article in top_articles %}
+            <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                <img src="{{ article.image }}" class="d-block w-100" alt="Top News">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ article.title }}</h5>
+                    <p>{{ article.text }}</p>
+                    <a href="{{ article.url }}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#topNewsCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#topNewsCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- News Section -->
+    <div id="news" class="container mt-5">
+        <h2>Latest News</h2>
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ article.image }}" class="card-img-top" alt="News Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.text }}</p>
+                        <a href="{{ article.url }}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container text-center">
+            {% if prev_page %}
+            <a href="/?page={{ prev_page }}" class="btn btn-secondary">Previous</a>
+            {% endif %}
+            {% if next_page %}
+            <a href="/?page={{ next_page }}" class="btn btn-secondary">Next</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Karanveer Mehra News | All Rights Reserved
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
