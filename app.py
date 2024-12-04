@@ -53,7 +53,9 @@ def extract_article_content(url):
         }
     except Exception as e:
         return {"title": get_random_error_title(), "text": "Click on Read More", "url": url, "image": None, "date": datetime.now()}
-
+@app.get("/about", response_class=HTMLResponse)
+async def about(request: Request):
+    return templates.TemplateResponse("about.html", {"request": request})
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request, page: int = Query(1)):
     query = "Karan Veer Mehra bigg boss 18 news articles"
