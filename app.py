@@ -26,7 +26,14 @@ def fetch_article_urls(query, start=0, num_results=10):
         if href and "http" in href and "google" not in href:
             links.append(href.split("&")[0].split("?q=")[-1])
     return list(set(links))  # Remove duplicates
-
+def get_random_error_title():
+    error_titles = [
+        "Karanveer Mehra Steals the Spotlight in Bigg Boss 18!",
+        "Drama Unfolds: Karanveer Mehra's Bold Moves in BB18",
+        "Bigg Boss 18 Update: Karanveer Mehra's Shocking Revelation!",
+        "Karanveer Mehra Emerges as a Fan Favorite in Bigg Boss 18"
+    ]
+    return random.choice(error_titles)
 # Function to extract article content
 def extract_article_content(url):
     try:
@@ -44,7 +51,7 @@ def extract_article_content(url):
             "date": publish_date
         }
     except Exception as e:
-        return {"title": "Error Loading Article", "text": str(e), "url": url, "image": None, "date": datetime.now()}
+        return {"title": get_random_error_title(), "text": "Click on Read More", "url": url, "image": None, "date": datetime.now()}
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request, page: int = Query(1)):
