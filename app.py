@@ -1,18 +1,25 @@
-from flask import Flask, render_template, request
+from fastapi import FastAPI, Request, Query
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 import requests
 from bs4 import BeautifulSoup
 from newspaper import Article
 from datetime import datetime
+from fastapi.staticfiles import StaticFiles
 
-app = Flask(__name__)
+# Initialize FastAPI app
+app = FastAPI()
 
+# Set up Jinja2 templates
+templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 # Function to fetch article URLs dynamically
 def fetch_article_urls(query, start=0, num_results=10):
     headers = {'User-Agent': 'Mozilla/5.0'}
     search_url = f"https://www.google.com/search?q={query}&start={start}&num={num_results}"
     response = requests.get(search_url, headers=headers)
     soup = BeautifulSoup(response.text, 'html.parser')
-    
+
     links = []
     for a in soup.find_all('a'):
         href = a.get('href')
@@ -39,11 +46,10 @@ def extract_article_content(url):
     except Exception as e:
         return {"title": "Error Loading Article", "text": str(e), "url": url, "image": None, "date": datetime.now()}
 
-@app.route('/')
-def home():
-    query = "Karan Veer Mehra bigg boss 18  news articles"
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request, page: int = Query(1)):
+    query = "Karan Veer Mehra bigg boss 18 news articles"
     articles_per_page = 10  # Articles to display per page
-    page = int(request.args.get('page', 1))  # Current page, default is 1
     start_index = (page - 1) * articles_per_page
 
     # Fetch articles for the current page
@@ -60,14 +66,14 @@ def home():
     # Top 5 articles for the carousel (always from the latest articles fetched)
     top_articles = articles[:5] if page == 1 else []
 
-    return render_template(
-        'index.html',
-        articles=articles,
-        top_articles=top_articles,
-        page=page,
-        prev_page=prev_page,
-        next_page=next_page
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "articles": articles,
+            "top_articles": top_articles,
+            "page": page,
+            "prev_page": prev_page,
+            "next_page": next_page,
+        }
     )
-
-if __name__ == "__main__":
-    app.run()
