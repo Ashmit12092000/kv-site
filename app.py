@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from newspaper import Article
 from datetime import datetime
 from fastapi.staticfiles import StaticFiles
+import random
 
 # Initialize FastAPI app
 app = FastAPI()
