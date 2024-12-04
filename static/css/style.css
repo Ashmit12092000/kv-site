@@ -64,7 +64,12 @@ body {
     border-bottom: 3px solid #007bff;
     display: inline-block;
 }
+.news-container{
+    padding:50px;
+}
+
 .card {
+    padding:10px;
     border: none;
     border-radius: 10px;
     overflow: hidden;
