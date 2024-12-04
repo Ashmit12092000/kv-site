@@ -83,7 +83,7 @@
         {% for article in articles %}
         <a href="{{ article.url }}" target="_blank" class="card-link" style="text-decoration:none;">
             <div class="card">
-                <img src="{{ article.image or url_for('static', path='images/placeholder.jpg') }}" alt="{{ article.title }}">
+                <img src="{{ article.image or url_for('static', path='placeholder.jpg') }}" alt="{{ article.title }}">
                 <div class="card-content">
                     <h3>{{ article.title }}</h3>
                     <p>{{ article.text }}</p>
