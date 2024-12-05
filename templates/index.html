@@ -11,7 +11,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karanveer Mehra News</title>
     <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script>
+        async function handleLinkClick(buttonName, event) {
+            try {
+                const response = await fetch(`/button-click/${buttonName}`, {
+                    method: "POST",
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    updateClickCounts(data.counts);
+                } else {
+                    console.error(data.error);
+                }
+            } catch (error) {
+                console.error("Error clicking link:", error);
+            }
+        }
+
+        // Fetch the initial click counts
+        
+
+        // Update click counts on the page
+        function updateClickCounts(counts) {
+            document.getElementById("youtube-count").textContent = counts.youtube || 0;
+            document.getElementById("wikipedia-count").textContent = counts.wikipedia || 0;
+            document.getElementById("google-count").textContent = counts.google || 0;
+        }
+
+        // Initialize counts on page load
+        
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -37,21 +68,22 @@
     <div class="container text-center mt-5 pt-5">
         <div class="row">
             <div class="col">
-                <a class="btn btn-outline-dark me-3" href="https://en.wikipedia.org/wiki/Special:Search?search=Karan+Veer+Mehra" target="_blank">
+                <a class="btn btn-outline-dark me-3" href="https://en.wikipedia.org/wiki/Special:Search?search=Karan+Veer+Mehra" target="_blank" onclick="handleLinkClick('youtube', event)">
                     <i class="fa-brands fa-wikipedia-w"></i> Search Wikipedia
                 </a>
             </div>
             <div class="col">
-                <a class="btn btn-outline-primary me-3" href="https://www.google.com/search?q=Karan+Veer+Mehra+BiggBoss" target="_blank">
+                <a class="btn btn-outline-primary me-3" href="https://www.google.com/search?q=Karan+Veer+Mehra+BiggBoss" target="_blank"  onclick="handleLinkClick('wikipedia', event)">
                     <i class="fa-brands fa-google" style="color: #B197FC;"></i> Search Google
                 </a>
             </div>
             <div class="col">
-                <a class="btn btn-outline-danger" href="https://www.youtube.com/results?search_query=Karan+Veer+Mehra" target="_blank">
+                <a class="btn btn-outline-danger" href="https://www.youtube.com/results?search_query=Karan+Veer+Mehra" target="_blank" onclick="handleLinkClick('google', event)">
                     <i class="fa-brands fa-youtube" style="color: #ff0000;"></i> Search YouTube
                 </a>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Carousel Section -->
