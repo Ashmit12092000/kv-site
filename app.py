@@ -58,7 +58,7 @@ async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request, page: int = Query(1)):
-    query = "Karan Veer Mehra bigg boss 18 news articles"
+    query = "Karan Veer Mehra latest news articles"
     articles_per_page = 10  # Articles to display per page
     start_index = (page - 1) * articles_per_page
 
