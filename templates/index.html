@@ -99,7 +99,9 @@
         <div class="carousel-inner">
             {% for article in articles[:3] %}
             <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-                <img src="{{ article['image'] }}" class="d-block w-100" alt="{{ article['title'] }}" style="height: 400px; object-fit: cover;">
+                <a href="{{ article['url'] }}" target="_blank">
+                 <img src="{{ article['image'] }}" class="d-block w-100" alt="{{ article['title'] }}" style="height: 400px; object-fit: cover;">
+                </a>
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ article['title'] }}</h5>
                     <p>{{ article['text'] }}</p>
